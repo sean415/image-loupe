@@ -31,8 +31,11 @@
       var self = this;
 
       this.element.addEventListener('mousemove', function(e) {
-        var x = e.clientX,
-            y = e.clientY;
+        var elementOffset = self.element.getBoundingClientRect(),
+            elementOffsetX = elementOffset.left,
+            elementOffsetY = elementOffset.top,
+            x = e.clientX - elementOffsetX,
+            y = e.clientY - elementOffsetY;
 
         self.setLoupePosition(x, y);
       });
@@ -49,13 +52,14 @@
     },
 
     setLoupePosition: function(x, y) {
-      // todo dont hardcode this
+      // TODO(sean) don't hardcode loupeWidth or borderWidth
       var loupeWidth = 200,
+          borderWidth = 10,
           magnification = this.magnification,
           halfLoupeWidth = loupeWidth / 2;
 
-      this.loupe.style.top = y - halfLoupeWidth + 'px';
-      this.loupe.style.left = x - halfLoupeWidth + 'px';
+      this.loupe.style.top = y - halfLoupeWidth - 10 + 'px';
+      this.loupe.style.left = x - halfLoupeWidth - 10 + 'px';
 
       this.highResImage.style.top = -(magnification * y - (halfLoupeWidth)) + 'px';
       this.highResImage.style.left = -(magnification * x - (halfLoupeWidth)) + 'px';

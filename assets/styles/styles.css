@@ -1,3 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
 [data-widget-name=magnifier] {
   position: relative;
   z-index: 1;
@@ -9,7 +21,6 @@
 }
 
 [data-widget-name=magnifier]:hover .loupe {
-  opacity: 1;
   transform: scale(1);
 }
 
@@ -25,16 +36,29 @@
   border-radius: 50%;
   border: 10px solid #ccc;
   overflow: hidden;
-  opacity: 0;
-  transform: scale(0.25);
-  transform-origin: 50%;
+  transform: scale(0);
+  transform-origin: 50% 50%;
   pointer-events: none;
-  transition: transform 0.15s linear;
+  transition: transform 0.15s ease-out;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2), 0 10px 10px rgba(0,0,0,0.3);
 }
 
 .loupe img {
   position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
   display: block;
+}
+
+.loupe::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  box-shadow: inset 0 20px 50px rgba(0,0,0,0.2), inset 0 10px 10px rgba(0,0,0,0.3);
 }
