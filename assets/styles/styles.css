@@ -1,0 +1,40 @@
+[data-widget-name=magnifier] {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+[data-widget-name=magnifier] img {
+  display: block;
+}
+
+[data-widget-name=magnifier]:hover .loupe {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.loupe {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  display: block;
+  box-sizing: border-box;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 10px solid #ccc;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.25);
+  transform-origin: 50%;
+  pointer-events: none;
+  transition: transform 0.15s linear;
+}
+
+.loupe img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
